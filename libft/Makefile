@@ -6,7 +6,7 @@
 #    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/16 16:29:38 by llahti            #+#    #+#              #
-#    Updated: 2020/01/28 11:59:55 by llahti           ###   ########.fr        #
+#    Updated: 2020/01/31 15:46:12 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,16 +34,20 @@ GNLDIR = $(patsubst %, gnl/%, $(GNL))
 FT_PRINTFDIR = $(patsubst %, ft_printf/%, $(FT_PRINTF))
 SRCS = $(LIBFTDIR) $(GNLDIR) $(FT_PRINTFDIR)
 SRCFILES = $(LIBFT) $(GNL) $(FT_PRINTF)
+ODIR = objs
 OBJS = $(patsubst %.c, %.o, $(SRCFILES))
+OBJSDIR = $(patsubst %, $(ODIR)/%, $(OBJS))
 
 all: $(NAME)
 
 $(NAME): $(SRCS)
 	gcc -Wall -Wextra -Werror -c $(SRCS)
-	ar rc $(NAME) $(OBJS)
+	mkdir $(ODIR)
+	mv $(OBJS) $(ODIR)
+	ar rc $(NAME) $(OBJSDIR)
 
 clean:
-	rm -f $(OBJS)
+	rm -f -r $(ODIR)
 
 fclean: clean
 	rm -f $(NAME)
