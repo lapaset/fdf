@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 14:03:50 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 09:29:52 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:14:10 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		ft_read(char ***input, char **argv)
 int		main(int arg, char **argv)
 {
 	t_grid	*grid;
-	char    **input;
-	int     height;
+	char	**input;
+	int		height;
 
 	if (arg != 2)
 		return (ft_usage());

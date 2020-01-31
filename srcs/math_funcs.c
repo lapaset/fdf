@@ -6,13 +6,13 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:14:40 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/29 16:56:59 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:11:52 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int 	ft_abs(int nb)
+int		ft_abs(int nb)
 {
 	if (nb < 0)
 		return (nb * -1);

@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 16:04:22 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/23 16:04:39 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:15:44 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_hexa_to_int(char c)
 {
 	if (c <= '9')
-		return(c - '0');
+		return (c - '0');
 	else
-		return (15 - ('F' - ft_toupper(c)));	
+		return (15 - ('F' - ft_toupper(c)));
 }

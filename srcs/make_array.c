@@ -6,13 +6,13 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:09 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 09:28:40 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:09:49 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_add_color(char *input, int k, t_point *point, int last)
+int				ft_add_color(char *input, int k, t_point *point, int last)
 {
 	if (input[k] == '-' || input[k] == '+')
 		k++;
@@ -31,9 +31,16 @@ int		ft_add_color(char *input, int k, t_point *point, int last)
 	return (k);
 }
 
-void	ft_to_point_array(t_grid *grid, char **input)
+static void		ft_add_coordinates(t_point *point, int x, int y, int z)
 {
-	int 	i;
+	point->x = x;
+	point->y = y;
+	point->z = z;
+}
+
+void			ft_to_point_array(t_grid *grid, char **input)
+{
+	int		i;
 	int		j;
 	int		k;
 
@@ -42,7 +49,8 @@ void	ft_to_point_array(t_grid *grid, char **input)
 	i = 0;
 	while (i < grid->arr_height)
 	{
-		if (!(grid->arr[i] = (t_point*)malloc(sizeof(t_point) * grid->arr_width)))
+		if (!(grid->arr[i] = (t_point*)malloc(sizeof(t_point) *
+								grid->arr_width)))
 			ft_error("Malloc error at ft_to_point_array", 1);
 		j = 0;
 		k = 0;
@@ -50,10 +58,9 @@ void	ft_to_point_array(t_grid *grid, char **input)
 			k++;
 		while (j < grid->arr_width)
 		{
-			grid->arr[i][j].x = j;
-			grid->arr[i][j].y = i;
-			grid->arr[i][j].z = ft_atoi(&input[i][k]);
-			k = ft_add_color(input[i], k, &grid->arr[i][j], j == grid->arr_width - 1);
+			ft_add_coordinates(&grid->arr[i][j], j, i, ft_atoi(&input[i][k]));
+			k = ft_add_color(input[i], k, &grid->arr[i][j],
+								j == grid->arr_width - 1);
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 13:45:45 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 12:21:51 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:11:25 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_count_arr_width(char *line)
 {
-	int 	width;
+	int		width;
 
 	if (!line)
 		return (0);
@@ -41,7 +41,7 @@ void	ft_get_projection_and_zoom(t_grid *grid)
 	grid->multiply = 1 + IMG_WIDTH / (grid->arr_width + grid->arr_height);
 }
 
-void 	ft_make_grid(t_grid **grid, char **lines, int height)
+void	ft_make_grid(t_grid **grid, char **lines, int height)
 {
 	if (!(*grid = (t_grid*)malloc(sizeof(t_grid))))
 		ft_error("Malloc error at ft_make_grid", 1);
@@ -52,6 +52,5 @@ void 	ft_make_grid(t_grid **grid, char **lines, int height)
 	(*grid)->multiply_z = 1;
 	(*grid)->key_funcs_set = 0;
 	ft_get_projection_and_zoom(*grid);
-	//ft_printf("arr size: %d,%d, multiply: %d\n", (*grid)->arr_width, height, (*grid)->multiply);
 	ft_to_point_array(*grid, lines);
 }

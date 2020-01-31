@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:23:47 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 09:22:40 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:43:07 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,20 @@ void	ft_line_to_img(t_point *p1, t_point *p2, t_ptrs *ptrs)
 	t_line	*line;
 	int		done;
 
-	done = 0;
+	ft_dot_to_image(p1, ptrs);
+	if (p1->dx == p2->dx && p1->dy == p2->dy)
+		return ;
 	if (!(line = (t_line*)malloc(sizeof(t_line))))
 		ft_error("Malloc error at ft_line_to_img", 1);
 	ft_make_line(p1, p2, line);
 	next.dx = line->x0;
 	next.dy = line->y0;
-	ft_dot_to_image(&next, ptrs);
+	done = 0;
 	while (!done)
 	{
-		if (next.dx == line->x1 && next.dy == line->y1)
-			done = 1;
-		else
-		{
-			ft_bresenham(line, &next);
-			ft_get_dot_color(&next, line);
-			ft_dot_to_image(&next, ptrs);
-		}
+		done = ft_bresenham(line, &next);
+		ft_get_dot_color(&next, line);
+		ft_dot_to_image(&next, ptrs);
 	}
 	free(line);
 }
@@ -98,6 +95,5 @@ void	ft_make_image(t_ptrs *ptrs, t_grid *grid)
 	ptrs->img_ptr = mlx_new_image(ptrs->mlx_ptr, IMG_WIDTH, IMG_HEIGHT);
 	ptrs->data_ptr = mlx_get_data_addr(ptrs->img_ptr, &bpp, &size_line,
 						&endian);
-	//ft_printf("size_line: %d, IMG_WIDTH: %d, bpp: %d\n", size_line, IMG_WIDTH, bpp);
 	ft_grid_to_image(grid, ptrs);
 }

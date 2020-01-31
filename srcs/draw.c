@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:16:00 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 11:23:52 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:13:49 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_get_draw_points(t_grid *grid)
 
 void	ft_get_zero_point(t_grid *grid)
 {
-	void 	(*zeropoints[4])(t_grid*);
+	void	(*zeropoints[4])(t_grid*);
 
 	zeropoints[0] = &ft_get_zero_paralinear;
 	zeropoints[1] = &ft_get_zero_isometric;
@@ -41,11 +41,11 @@ int		ft_draw_image(t_ptrs *ptrs)
 	ft_get_draw_points(ptrs->grid);
 	ft_make_image(ptrs, ptrs->grid);
 	mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, ptrs->img_ptr,
-				(WIN_WIDTH - IMG_WIDTH) / 2, (WIN_HEIGHT - IMG_HEIGHT) /2);
+				(WIN_WIDTH - IMG_WIDTH) / 2, (WIN_HEIGHT - IMG_HEIGHT) / 2);
 	return (1);
 }
 
-int     ft_draw(t_grid *grid)
+int		ft_draw(t_grid *grid)
 {
 	t_ptrs	*ptrs;
 

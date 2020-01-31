@@ -6,13 +6,15 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:35:50 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 12:38:58 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 15:05:42 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 //todo: count the zero point when map is first moved then zoomed
+//      count the zero point when map is first moved then switched the projection
+//		--->if you just saved the middle point and counted the y0 and x0 from that????
 //also: leaks, destroying the image or erasing and drawing in the same image?
 
 void	ft_reset_image(t_ptrs *ptrs)
@@ -21,7 +23,7 @@ void	ft_reset_image(t_ptrs *ptrs)
 	ft_draw_image(ptrs);
 }
 
-int 	ft_get_reverse_key(int key)
+int		ft_get_reverse_key(int key)
 {
 	if (key == 123 || key == 125)
 		return (key + 1);
@@ -49,7 +51,7 @@ void	ft_key_funcs(void (*key_funcs[])(t_ptrs*), t_grid *grid)
 
 int		ft_deal_key(int key, void *ptrs)
 {
-	t_ptrs 	*temp;
+	t_ptrs	*temp;
 	void	(*key_funcs[127])(t_ptrs*);
 
 	temp = (t_ptrs*)ptrs;

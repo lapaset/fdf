@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 12:38:29 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 12:40:25 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:12:12 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void		ft_scroll_down(t_ptrs *ptrs)
 int				ft_deal_mouse(int button, int x, int y, void *ptrs)
 {
 	t_ptrs	*temp;
-	
+
 	temp = ptrs;
 	ft_printf("button: %d, %d,%d\n", button, x, y);
 	if (button == 5)

@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 12:34:37 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 12:46:44 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:12:58 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	ft_reverse_arrows(t_ptrs *ptrs)
 	if (ptrs->grid->reverse_arrows)
 		ptrs->grid->reverse_arrows = 0;
 	else
-		ptrs->grid->reverse_arrows = 1;	
+		ptrs->grid->reverse_arrows = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:20:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/29 17:08:30 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:14:55 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_get_len(t_line *l)
 	if (ft_x_is_longer(l))
 		return (l->x1 - l->x0);
 	else
-		return (l->y1 - l->y0);		
+		return (l->y1 - l->y0);
 }
 
 int		ft_get_i(t_point *next, t_line *l)
@@ -25,7 +25,7 @@ int		ft_get_i(t_point *next, t_line *l)
 	if (ft_x_is_longer(l))
 		return (next->dx - l->x0);
 	else
-		return (next->dy - l->y0);	
+		return (next->dy - l->y0);
 }
 
 void	ft_get_dot_color(t_point *next, t_line *l)
@@ -50,10 +50,10 @@ void	ft_get_dot_color(t_point *next, t_line *l)
 void	ft_dot_to_image(t_point *dot, t_ptrs *ptrs)
 {
 	int start_i;
-	
+
 	if (dot->dx < 0 || dot->dx > IMG_WIDTH - 1 ||
 		dot->dy < 0 || dot->dy > IMG_HEIGHT - 1)
-		return;
+		return ;
 	start_i = dot->dx * 4 + 4 * IMG_WIDTH * dot->dy;
 	ptrs->data_ptr[start_i] = mlx_get_color_value(ptrs->mlx_ptr, dot->b);
 	ptrs->data_ptr[start_i + 1] = mlx_get_color_value(ptrs->mlx_ptr, dot->g);
