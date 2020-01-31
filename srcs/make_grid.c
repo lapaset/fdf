@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 13:45:45 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 11:25:36 by llahti           ###   ########.fr       */
+/*   Updated: 2020/01/31 12:21:51 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void 	ft_make_grid(t_grid **grid, char **lines, int height)
 	(*grid)->reverse_arrows = 0;
 	(*grid)->zero_moved = 0;
 	(*grid)->multiply_z = 1;
+	(*grid)->key_funcs_set = 0;
 	ft_get_projection_and_zoom(*grid);
 	//ft_printf("arr size: %d,%d, multiply: %d\n", (*grid)->arr_width, height, (*grid)->multiply);
 	ft_to_point_array(*grid, lines);
