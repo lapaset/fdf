@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 12:34:37 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 14:12:58 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/03 17:32:44 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,32 @@
 
 void	ft_move_down(t_ptrs *ptrs)
 {
-	ptrs->grid->y0 -= ptrs->grid->multiply * 2;
-	ptrs->grid->zero_moved = 1;
+	ptrs->grid->center->dy -= ptrs->grid->multiply * 2;
+	ptrs->grid->center_moved = 1;
 }
 
 void	ft_move_up(t_ptrs *ptrs)
 {
-	ptrs->grid->y0 += ptrs->grid->multiply * 2;
-	ptrs->grid->zero_moved = 1;
+	ptrs->grid->center->dy += ptrs->grid->multiply * 2;
+	ptrs->grid->center_moved = 1;
 }
 
 void	ft_move_left(t_ptrs *ptrs)
 {
-	ptrs->grid->x0 += ptrs->grid->multiply * 2;
-	ptrs->grid->zero_moved = 1;
+	ptrs->grid->center->dx += ptrs->grid->multiply * 2;
+	ptrs->grid->center_moved = 1;
 }
 
 void	ft_move_right(t_ptrs *ptrs)
 {
-	ptrs->grid->x0 -= ptrs->grid->multiply * 2;
-	ptrs->grid->zero_moved = 1;
+	ptrs->grid->center->dx -= ptrs->grid->multiply * 2;
+	ptrs->grid->center_moved = 1;
 }
 
-void	ft_reverse_arrows(t_ptrs *ptrs)
+void	ft_reset_to_middle(t_ptrs *ptrs)
 {
-	if (ptrs->grid->reverse_arrows)
-		ptrs->grid->reverse_arrows = 0;
-	else
-		ptrs->grid->reverse_arrows = 1;
+	ft_get_zero_point(ptrs->grid);
+	ptrs->grid->center_moved = 0;
+	ptrs->grid->center =
+		&ptrs->grid->arr[ptrs->grid->arr_height / 2][ptrs->grid->arr_width / 2];
 }

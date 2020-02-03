@@ -1,0 +1,15 @@
+NAME = libft.a
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+ODIR = objs
+SDIR = libft
+INC = libft
+
+OBJECTS = ft_memset.o ft_putnbr.o
+OBJS = $(patsubst %,$(ODIR)/%, $(OBJECTS))
+
+$(ODIR)/%.o: $(SDIR)/%.c
+	$(CC) -c -I $(INC) -o $@ $< $(CFLAGS)
+
+$(NAME): $(OBJS)
+	ar rvs $(NAME) $^

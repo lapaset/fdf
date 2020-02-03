@@ -6,16 +6,18 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 12:36:39 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 14:12:32 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/03 17:30:16 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_reset_to_middle(t_ptrs *ptrs)
+void	ft_reverse_arrows(t_ptrs *ptrs)
 {
-	ft_get_zero_point(ptrs->grid);
-	ptrs->grid->zero_moved = 0;
+	if (ptrs->grid->reverse_arrows)
+		ptrs->grid->reverse_arrows = 0;
+	else
+		ptrs->grid->reverse_arrows = 1;
 }
 
 void	ft_close(t_ptrs *ptrs)
@@ -43,6 +45,6 @@ void	ft_switch_projection(t_ptrs *ptrs)
 		ptrs->grid->projection = 0;
 	else
 		ptrs->grid->projection++;
-	if (!ptrs->grid->zero_moved)
+	if (!ptrs->grid->center_moved)
 		ft_get_zero_point(ptrs->grid);
 }

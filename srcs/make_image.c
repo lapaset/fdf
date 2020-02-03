@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:23:47 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 14:43:07 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/03 17:24:00 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_line_to_img(t_point *p1, t_point *p2, t_ptrs *ptrs)
 	while (!done)
 	{
 		done = ft_bresenham(line, &next);
+		//ft_color_theme_1(&next, line, ptrs->grid->max_z, ptrs->grid->min_z);
 		ft_get_dot_color(&next, line);
 		ft_dot_to_image(&next, ptrs);
 	}

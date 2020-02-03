@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 12:39:32 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/29 18:12:47 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/03 17:30:05 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 void	ft_get_zero_isometric(t_grid *grid)
 {
-	t_point p;
 	int		y;
 
-	p = grid->arr[grid->arr_height - 1][grid->arr_width - 1];
-	y = grid->multiply * (p.x + p.y);
-	grid->y0 = ((IMG_HEIGHT - y) / 2);
-	grid->x0 = ((IMG_WIDTH - sqrt(3) * y) / 2 + sqrt(3) * y *
-			grid->arr_height / (grid->arr_height + grid->arr_width));
+	if (!grid->center_moved)
+	{
+		grid->center->dx = IMG_WIDTH / 2;
+		grid->center->dy = IMG_HEIGHT / 2;
+	}
+	y = grid->multiply * (grid->arr_width + grid->arr_height - 2);
+	grid->y0 = grid->center->dy - (y / 2);
+	grid->x0 = grid->center->dx - sqrt(3) * (y / 2) + grid->multiply * sqrt(3) *
+				(grid->arr_height - 1);
 }
 
 void	ft_get_draw_pts_isometric(t_grid *grid)

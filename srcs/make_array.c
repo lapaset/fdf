@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:09 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 14:09:49 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/03 17:09:35 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ void			ft_to_point_array(t_grid *grid, char **input)
 		while (j < grid->arr_width)
 		{
 			ft_add_coordinates(&grid->arr[i][j], j, i, ft_atoi(&input[i][k]));
+			if (grid->arr[i][j].z > grid->max_z)
+				grid->max_z = grid->arr[i][j].z;
+			if (grid->arr[i][j].z < grid->min_z)
+				grid->min_z = grid->arr[i][j].z;
 			k = ft_add_color(input[i], k, &grid->arr[i][j],
 								j == grid->arr_width - 1);
 			j++;

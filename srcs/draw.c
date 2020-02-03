@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:16:00 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 14:13:49 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/03 17:27:09 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	ft_get_zero_point(t_grid *grid)
 
 int		ft_draw_image(t_ptrs *ptrs)
 {
-	if (!ptrs->grid->zero_moved)
-		ft_get_zero_point(ptrs->grid);
+	//if (!ptrs->grid->zero_moved)
+	ft_get_zero_point(ptrs->grid);
 	ft_get_draw_points(ptrs->grid);
 	ft_make_image(ptrs, ptrs->grid);
 	mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, ptrs->img_ptr,

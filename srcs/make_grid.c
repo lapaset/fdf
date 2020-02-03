@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 13:45:45 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 14:11:25 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/03 17:42:51 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,16 @@ void	ft_make_grid(t_grid **grid, char **lines, int height)
 	(*grid)->arr_width = ft_count_arr_width(lines[0]);
 	(*grid)->arr_height = height;
 	(*grid)->reverse_arrows = 0;
-	(*grid)->zero_moved = 0;
+	(*grid)->center_moved = 0;
 	(*grid)->multiply_z = 1;
-	(*grid)->key_funcs_set = 0;
+	(*grid)->max_z = -2000;
+	(*grid)->min_z = 2000;
 	ft_get_projection_and_zoom(*grid);
 	ft_to_point_array(*grid, lines);
+	if (!((*grid)->center = (t_point*)malloc(sizeof(t_point))))
+		ft_error("Malloc error at ft_make_grid", 1);	
+	(*grid)->center->dx = 
+			(*grid)->arr[(*grid)->arr_height / 2][(*grid)->arr_width / 2].dx;
+	(*grid)->center->dy =
+			(*grid)->arr[(*grid)->arr_height / 2][(*grid)->arr_width / 2].dy;
 }

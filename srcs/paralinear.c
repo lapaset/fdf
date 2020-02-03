@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 12:48:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 13:56:46 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/03 17:36:01 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 void	ft_get_zero_paralinear(t_grid *grid)
 {
-	grid->x0 = (IMG_WIDTH - grid->multiply *
-				(grid->arr_width + grid->arr_height - 2)) /
-				2 + grid->multiply * (grid->arr_height - 1);
-	grid->y0 = (IMG_HEIGHT - grid->multiply *
-				(grid->arr_width + grid->arr_height - 2)) / 2;
+	if (!grid->center_moved)
+	{
+		grid->center->dx = IMG_WIDTH / 2;
+		grid->center->dy = IMG_HEIGHT / 2;
+	}
+	grid->x0 = grid->center->dx - grid->multiply * (grid->arr_width + grid->arr_height - 2) / 2 +
+				grid->multiply * (grid->arr_height - 1);
+	grid->y0 = grid->center->dy - grid->multiply * (grid->arr_width + grid->arr_height - 2) / 2;
+	ft_printf("center: %d,%d zeropoint: %d,%d\n", grid->center->dx, grid->center->dy, grid->x0, grid->y0);
 }
 
 void	ft_get_draw_pts_paralinear(t_grid *grid)

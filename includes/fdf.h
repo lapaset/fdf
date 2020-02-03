@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 10:07:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 14:28:38 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/03 17:30:01 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# include "../libft/ft_printf/ft_printf.h"
+//change this to libft header!
+# include "../libft/srcs/ft_printf/ft_printf.h"
 # include "mlx.h"
 
 # define MAX_SIZE 1000
@@ -48,12 +49,14 @@ typedef struct	s_grid
 	int			arr_height;
 	int			multiply;
 	int			multiply_z;
+	int			max_z;
+	int			min_z;
 	int			projection;
 	int			x0;
 	int			y0;
 	int			reverse_arrows;
-	int			key_funcs_set;
-	int			zero_moved;
+	int			center_moved;
+	t_point		*center;
 }				t_grid;
 
 typedef struct	s_ptrs
@@ -143,5 +146,10 @@ void			ft_zoom_out(t_ptrs *ptrs);
 void			ft_switch_projection(t_ptrs *ptrs);
 
 int				ft_deal_mouse(int button, int x, int y, void *ptrs);
+
+void			ft_color_theme_1(t_point *next, t_line *l, int max_z, int min_z);
+
+int				ft_get_i(t_point *next, t_line *l);
+int				ft_get_len(t_line *l);
 
 #endif
