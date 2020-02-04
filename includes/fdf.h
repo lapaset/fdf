@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 10:07:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 18:46:35 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 19:48:33 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define DEFAULT_GREEN 255
 # define DEFAULT_BLUE 255
 # define DEFAULT_PROJECTION 3
+# define THEMES 4
 
 typedef struct	s_point
 {

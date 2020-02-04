@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 12:36:39 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 18:55:38 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 19:40:19 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ int		ft_switch_projection(t_ptrs *ptrs)
 
 int		ft_switch_color(t_ptrs *ptrs)
 {
-	if (ptrs->grid->colortheme == 0)
-		ptrs->grid->colortheme = 1;
-	else if (ptrs->grid->colortheme == 2)
+	if (ptrs->grid->colortheme == THEMES)
 		ptrs->grid->colortheme = 0;
 	else
 		ptrs->grid->colortheme++;
