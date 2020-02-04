@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 10:07:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/03 17:30:01 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 15:39:52 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ typedef struct	s_point
 	int			dx;
 	int			dy;
 	int			r;
-	int			b;
 	int			g;
+	int			b;
+	int			tr;
+	int			tg;
+	int			tb;
 }				t_point;
 
 typedef struct	s_grid
@@ -56,6 +59,7 @@ typedef struct	s_grid
 	int			y0;
 	int			reverse_arrows;
 	int			center_moved;
+	int			colortheme;
 	t_point		*center;
 }				t_grid;
 
@@ -118,16 +122,16 @@ void			ft_get_zero_point(t_grid *grid);
 void			ft_iterate_arr(t_grid *grid, void (f)(t_point*));
 
 //projections:
-void			ft_get_draw_pts_isometric(t_grid *grid);
+void			ft_get_draw_pts_isometric(t_grid *grid, t_point *point);
 void			ft_get_zero_isometric(t_grid *grid);
 
-void			ft_get_draw_pts_paralinear(t_grid *grid);
+void			ft_get_draw_pts_paralinear(t_grid *grid, t_point *point);
 void			ft_get_zero_paralinear(t_grid *grid);
 
-void			ft_get_draw_pts_origami(t_grid *grid);
+void			ft_get_draw_pts_origami(t_grid *grid, t_point *point);
 void			ft_get_zero_origami(t_grid *grid);
 
-void			ft_get_draw_pts_flat(t_grid *grid);
+void			ft_get_draw_pts_flat(t_grid *grid, t_point *point);
 void			ft_get_zero_flat(t_grid *grid);
 
 //events:
@@ -147,6 +151,8 @@ void			ft_switch_projection(t_ptrs *ptrs);
 
 int				ft_deal_mouse(int button, int x, int y, void *ptrs);
 
+//color business:
+void			ft_get_theme_colors(t_grid *grid, t_point *point, char **theme);
 void			ft_color_theme_1(t_point *next, t_line *l, int max_z, int min_z);
 
 int				ft_get_i(t_point *next, t_line *l);

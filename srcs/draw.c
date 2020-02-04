@@ -6,21 +6,42 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:16:00 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/03 17:27:09 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 15:55:32 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_get_draw_points(t_grid *grid)
+char	*theme_1[11] = {"10", "F1F2F3", "BBA681", "855A0F", "787F12", "487A15",
+	"1F7518", "1A6F38", "1C6A59", "1E5665", "203760"};
+
+//make this more efficient by counting only the points that fit the img or have
+//adjacent point that fits the img starting from the middle
+//-->center point could be an excisting point after all
+
+void	ft_get_draw_points(t_grid *grid, char **theme)
 {
-	void	(*projections[4])(t_grid*);
+	void	(*projections[4])(t_grid*, t_point *point);
+	int		i;
+	int		j;
 
 	projections[0] = &ft_get_draw_pts_paralinear;
 	projections[1] = &ft_get_draw_pts_isometric;
 	projections[2] = &ft_get_draw_pts_origami;
 	projections[3] = &ft_get_draw_pts_flat;
-	projections[grid->projection](grid);
+	i = 0;
+	while (i < grid->arr_height)
+	{
+		j = 0;
+		while (j < grid->arr_width)
+		{
+			projections[grid->projection](grid, &grid->arr[i][j]);
+			if (grid->colortheme != 0)
+				ft_get_theme_colors(grid, &grid->arr[i][j], theme);
+			j++;
+		}
+		i++;
+	}
 }
 
 void	ft_get_zero_point(t_grid *grid)
@@ -31,14 +52,18 @@ void	ft_get_zero_point(t_grid *grid)
 	zeropoints[1] = &ft_get_zero_isometric;
 	zeropoints[2] = &ft_get_zero_origami;
 	zeropoints[3] = &ft_get_zero_flat;
+	if (!grid->center_moved)
+	{
+		grid->center->dx = IMG_WIDTH / 2;
+		grid->center->dy = IMG_HEIGHT / 2;
+	}
 	zeropoints[grid->projection](grid);
 }
 
 int		ft_draw_image(t_ptrs *ptrs)
 {
-	//if (!ptrs->grid->zero_moved)
 	ft_get_zero_point(ptrs->grid);
-	ft_get_draw_points(ptrs->grid);
+	ft_get_draw_points(ptrs->grid, theme_1);
 	ft_make_image(ptrs, ptrs->grid);
 	mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, ptrs->img_ptr,
 				(WIN_WIDTH - IMG_WIDTH) / 2, (WIN_HEIGHT - IMG_HEIGHT) / 2);

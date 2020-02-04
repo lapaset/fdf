@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 13:45:45 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/03 17:42:51 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 14:30:08 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ft_make_grid(t_grid **grid, char **lines, int height)
 	(*grid)->arr_height = height;
 	(*grid)->reverse_arrows = 0;
 	(*grid)->center_moved = 0;
+	(*grid)->colortheme = 1;
 	(*grid)->multiply_z = 1;
 	(*grid)->max_z = -2000;
 	(*grid)->min_z = 2000;

@@ -6,11 +6,19 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:32:30 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/03 17:22:42 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 15:45:43 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+//todo tomorrow:
+//  -get the colors by z to work
+//	-refactor
+//	-make different color models
+//	--->maybe read from separate file??
+//	-try filling?
+//	-consider the rotating stuff
 
 //052866, 052866, 319367, 6CB25D, E0D4B5, FFFFFF
 int		ft_theme_1_r(int nb)
@@ -52,7 +60,7 @@ int		ft_theme_1_b(int nb)
 	return (b[nb]);
 }
 
-void	ft_color_theme_1(t_point *next, t_line *l, int max_z, int min_z)
+/*void	ft_color_theme_1(t_point *next, t_line *l, int max_z, int min_z)
 {
 	int		len;
 	int		i;
@@ -97,4 +105,44 @@ void	ft_color_theme_1(t_point *next, t_line *l, int max_z, int min_z)
 	next->b = temp_start.b + (temp_end.b - temp_start.b) * i / len;
 	next->r = temp_start.r + (temp_end.r - temp_start.r) * i / len;
 	next->g = temp_start.g + (temp_end.g - temp_start.g) * i / len;
+}*/
+
+int		ft_hex_to_int(char *str)
+{
+	int		res;
+	int		temp;
+	int		i;
+
+	//if (!(ft_strnequ(str, "0x", 2) || ft_strnequ(str, "0X", 2)))
+		//return (0);
+	//str += 2;
+	res = 0;
+	i = ft_hexa_len(str) - 1;
+	while (ft_is_hexa(*str))
+	{
+		if (*str <= '9')
+			temp = *str - '0';
+		else
+			temp = 15 - ('F' - ft_toupper(*str));
+		res += temp * ft_power(16, i);
+		str++;
+		i--;
+	}
+	return (res);
+}
+
+void	ft_get_theme_colors(t_grid *grid, t_point *point, char **theme)
+{
+	int		steps;
+	int		part;
+
+	steps = ft_atoi(theme[0]);
+	part = (ft_abs(0 - grid->max_z) + ft_abs(0 - grid->min_z)) / steps;
+	if (part < 1)
+		part = 1;
+	(void)point;
+	
+	ft_printf("%s, %d\n", theme[1], steps);
+	if (grid->colortheme)
+		return ;
 }

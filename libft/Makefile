@@ -6,7 +6,7 @@
 #    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/16 16:29:38 by llahti            #+#    #+#              #
-#    Updated: 2020/02/03 11:23:45 by llahti           ###   ########.fr        #
+#    Updated: 2020/02/04 15:08:23 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ ft_putnbr.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o\
 ft_lstnew.o ft_lstdelone.o ft_lstadd.o ft_lstiter.o ft_lstmap.o ft_lstdel.o\
 ft_intlen.o ft_strrev.o ft_strjoin_free.o ft_strsub_free.o ft_sqrt.o\
 ft_strnew_chr.o ft_strccpy.o ft_itoa_base.o ft_ll_len.o ft_putnbr_ll.o\
-ft_swap.o ft_hexa_to_int.o ft_is_hexa.o ft_hexa_len.o
+ft_swap.o ft_hexa_to_int.o ft_is_hexa.o ft_hexa_len.o ft_power.o
 _GNL = get_next_line.o
 _PRINTF = ft_printf.o list_convs.o print.o is_funcs.o create_conv.o add_flags.o\
 print_cs.o print_di.o print_p.o print_unsigned.o print_f.o double_to_str.o\
@@ -38,19 +38,23 @@ _OBJS = $(LIBFT) $(GNL) $(PRINTF)
 OBJS = $(patsubst %, $(ODIR)/%, $(_OBJS))
 
 $(ODIR)/%.o: $(SDIR)/%.c
-	gcc -Wall -Wextra -Werror -c -o $@ $<
+	@gcc -Wall -Wextra -Werror -c -o $@ $<
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $^
-	ranlib $(NAME)
+	@echo "\033[1;32mObject files created\033[0m"
+	@ar rc $(NAME) $^
+	@ranlib $(NAME)
+	@echo "\033[1;32mLibrary created\033[0m"
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
+	@echo "\033[1;32mObjects cleaned\033[0m"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "\033[1;32mLibrary cleaned\033[0m"
 
 re: fclean all
 
