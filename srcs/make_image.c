@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:23:47 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 15:14:02 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 17:08:51 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_line_to_img(t_point *p1, t_point *p2, t_ptrs *ptrs)
 	t_line	*line;
 	int		done;
 
-	ft_dot_to_image(p1, ptrs);
+	ft_dot_to_image(p1, ptrs, 1);
 	if (p1->dx == p2->dx && p1->dy == p2->dy)
 		return ;
 	if (!(line = (t_line*)malloc(sizeof(t_line))))
@@ -58,8 +58,8 @@ void	ft_line_to_img(t_point *p1, t_point *p2, t_ptrs *ptrs)
 	{
 		done = ft_bresenham(line, &next);
 		//ft_color_theme_1(&next, line, ptrs->grid->max_z, ptrs->grid->min_z);
-		ft_get_dot_color(&next, line);
-		ft_dot_to_image(&next, ptrs);
+		ft_get_dot_color(&next, line, ptrs->grid->colortheme != 0);
+		ft_dot_to_image(&next, ptrs, 0);
 	}
 	free(line);
 }

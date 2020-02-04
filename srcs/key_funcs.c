@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 12:36:39 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/03 17:30:16 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 18:15:20 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,14 @@ void	ft_switch_projection(t_ptrs *ptrs)
 		ptrs->grid->projection++;
 	if (!ptrs->grid->center_moved)
 		ft_get_zero_point(ptrs->grid);
+}
+
+void	ft_switch_color(t_ptrs *ptrs)
+{
+	if (ptrs->grid->colortheme == 0)
+		ptrs->grid->colortheme = 1;
+	else if (ptrs->grid->colortheme == 2)
+		ptrs->grid->colortheme = 0;
+	else
+		ptrs->grid->colortheme++;
 }

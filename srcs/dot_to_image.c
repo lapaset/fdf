@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:20:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 14:14:55 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 17:11:39 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,33 @@ int		ft_get_i(t_point *next, t_line *l)
 		return (next->dy - l->y0);
 }
 
-void	ft_get_dot_color(t_point *next, t_line *l)
+void	ft_get_dot_color_theme(t_point *next, t_line *l, int len, int i)
+{
+	if (len == 0)
+	{
+		next->b = l->start->tb;
+		next->g = l->start->tg;
+		next->r = l->start->tr;
+		return ;
+	}
+	next->b = l->start->tb + (l->end->tb - l->start->tb) * i / len;
+	next->r = l->start->tr + (l->end->tr - l->start->tr) * i / len;
+	next->g = l->start->tg + (l->end->tg - l->start->tg) * i / len;
+}
+
+void	ft_get_dot_color(t_point *next, t_line *l, int theme)
 {
 	int		len;
 	int		i;
 
 	i = ft_get_i(next, l);
 	len = ft_get_len(l);
+
+	if (theme)
+	{
+		ft_get_dot_color_theme(next, l, len, i);
+		return ;
+	}
 	if (len == 0)
 	{
 		next->b = l->start->b;
@@ -47,7 +67,7 @@ void	ft_get_dot_color(t_point *next, t_line *l)
 	next->g = l->start->g + (l->end->g - l->start->g) * i / len;
 }
 
-void	ft_dot_to_image(t_point *dot, t_ptrs *ptrs)
+void	ft_dot_to_image(t_point *dot, t_ptrs *ptrs, int single)
 {
 	int start_i;
 
@@ -55,6 +75,13 @@ void	ft_dot_to_image(t_point *dot, t_ptrs *ptrs)
 		dot->dy < 0 || dot->dy > IMG_HEIGHT - 1)
 		return ;
 	start_i = dot->dx * 4 + 4 * IMG_WIDTH * dot->dy;
+	if (single && ptrs->grid->colortheme != 0)
+	{
+		ptrs->data_ptr[start_i] = mlx_get_color_value(ptrs->mlx_ptr, dot->tb);
+		ptrs->data_ptr[start_i + 1] = mlx_get_color_value(ptrs->mlx_ptr, dot->tg);
+		ptrs->data_ptr[start_i + 2] = mlx_get_color_value(ptrs->mlx_ptr, dot->tr);
+		return ;
+	}
 	ptrs->data_ptr[start_i] = mlx_get_color_value(ptrs->mlx_ptr, dot->b);
 	ptrs->data_ptr[start_i + 1] = mlx_get_color_value(ptrs->mlx_ptr, dot->g);
 	ptrs->data_ptr[start_i + 2] = mlx_get_color_value(ptrs->mlx_ptr, dot->r);

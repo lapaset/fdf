@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:35:50 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/03 15:32:09 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 16:34:14 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_key_funcs(void (*key_funcs[])(t_ptrs*))
 	key_funcs[126] = &ft_move_down;
 	key_funcs[46] = &ft_reset_to_middle;
 	key_funcs[35] = &ft_switch_projection;
+	key_funcs[8] = &ft_switch_color;
 }
 
 int		ft_deal_key(int key, void *ptrs)
@@ -47,6 +48,7 @@ int		ft_deal_key(int key, void *ptrs)
 	t_ptrs	*temp;
 	void	(*key_funcs[127])(t_ptrs*);
 
+	ft_printf("key pressed %d\n", key);
 	if (key > 126)
 		return (0);
 	temp = (t_ptrs*)ptrs;

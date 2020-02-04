@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 16:02:15 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 13:35:45 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 16:50:09 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,22 @@ static int	ft_get_rgb(char *input, int len, int minlen)
 	return (res + temp * 16);
 }
 
-int			ft_get_color(t_point *point, char *input, int k)
+int			ft_get_color(t_point *point, char *input, int k, int theme)
 {
 	int		colorlen;
 
 	if (!(ft_strnequ(&input[k], ",0x", 3) ||
 			ft_strnequ(&input[k], ",0X", 3)))
-		ft_error("Error at get color", 1);
+		ft_error(input, 1);
 	k += 3;
 	colorlen = ft_hexa_len(&input[k]);
+	if (theme)
+	{
+		point->tb = ft_get_rgb(&input[k], colorlen, 2);
+		point->tg = ft_get_rgb(&input[k], colorlen, 4);
+		point->tr = ft_get_rgb(&input[k], colorlen, 6);
+		return (1);
+	}
 	point->b = ft_get_rgb(&input[k], colorlen, 2);
 	point->g = ft_get_rgb(&input[k], colorlen, 4);
 	point->r = ft_get_rgb(&input[k], colorlen, 6);

@@ -6,20 +6,17 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:16:00 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 15:55:32 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 18:03:29 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-char	*theme_1[11] = {"10", "F1F2F3", "BBA681", "855A0F", "787F12", "487A15",
-	"1F7518", "1A6F38", "1C6A59", "1E5665", "203760"};
-
 //make this more efficient by counting only the points that fit the img or have
 //adjacent point that fits the img starting from the middle
 //-->center point could be an excisting point after all
 
-void	ft_get_draw_points(t_grid *grid, char **theme)
+void	ft_get_draw_points(t_grid *grid)
 {
 	void	(*projections[4])(t_grid*, t_point *point);
 	int		i;
@@ -37,7 +34,7 @@ void	ft_get_draw_points(t_grid *grid, char **theme)
 		{
 			projections[grid->projection](grid, &grid->arr[i][j]);
 			if (grid->colortheme != 0)
-				ft_get_theme_colors(grid, &grid->arr[i][j], theme);
+				ft_get_theme_colors(grid, &grid->arr[i][j]);
 			j++;
 		}
 		i++;
@@ -63,7 +60,7 @@ void	ft_get_zero_point(t_grid *grid)
 int		ft_draw_image(t_ptrs *ptrs)
 {
 	ft_get_zero_point(ptrs->grid);
-	ft_get_draw_points(ptrs->grid, theme_1);
+	ft_get_draw_points(ptrs->grid);
 	ft_make_image(ptrs, ptrs->grid);
 	mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, ptrs->img_ptr,
 				(WIN_WIDTH - IMG_WIDTH) / 2, (WIN_HEIGHT - IMG_HEIGHT) / 2);

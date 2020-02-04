@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 10:07:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 15:39:52 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 18:03:44 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void			ft_print_grid(t_grid *grid, t_ptrs *ptrs);
 void			ft_make_grid(t_grid **grid, char **lines, int height);
 
 void			ft_make_image(t_ptrs *ptrs, t_grid *grid);
-void			ft_dot_to_image(t_point *dot, t_ptrs *ptrs);
 
 int				ft_bresenham(t_line *line, t_point *next);
 
@@ -106,13 +105,13 @@ void			ft_make_line(t_point *start, t_point *end, t_line *l);
 int				ft_error(char *str, int nb);
 int				ft_usage();
 
-int				ft_get_color(t_point *point, char *input, int k);
+int				ft_get_color(t_point *point, char *input, int k, int theme);
 void			ft_get_default_color(t_point *point);
 
 int				ft_x_is_longer(t_line *l);
 
-void			ft_get_dot_color(t_point *next, t_line *l);
-void			ft_dot_to_image(t_point *dot, t_ptrs *ptrs);
+void			ft_get_dot_color(t_point *next, t_line *l, int theme);
+void			ft_dot_to_image(t_point *dot, t_ptrs *ptrs, int single);
 
 int				ft_draw(t_grid *grid);
 int				ft_draw_image(t_ptrs *ptrs);
@@ -142,17 +141,18 @@ void			ft_move_up(t_ptrs *ptrs);
 void			ft_move_left(t_ptrs *ptrs);
 void			ft_move_right(t_ptrs *ptrs);
 void			ft_reverse_arrows(t_ptrs *ptrs);
-
 void			ft_reset_to_middle(t_ptrs *ptrs);
+
 void			ft_close(t_ptrs *ptrs);
 void			ft_zoom_in(t_ptrs *ptrs);
 void			ft_zoom_out(t_ptrs *ptrs);
 void			ft_switch_projection(t_ptrs *ptrs);
+void			ft_switch_color(t_ptrs *ptrs);
 
 int				ft_deal_mouse(int button, int x, int y, void *ptrs);
 
 //color business:
-void			ft_get_theme_colors(t_grid *grid, t_point *point, char **theme);
+void			ft_get_theme_colors(t_grid *grid, t_point *point);
 void			ft_color_theme_1(t_point *next, t_line *l, int max_z, int min_z);
 
 int				ft_get_i(t_point *next, t_line *l);

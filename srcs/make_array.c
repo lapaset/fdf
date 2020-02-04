@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:38:09 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/03 17:09:35 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 16:21:56 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int				ft_add_color(char *input, int k, t_point *point, int last)
 	while (ft_isdigit(input[k]))
 		k++;
 	if (input[k] == ',')
-		k = ft_get_color(point, input, k);
+		k = ft_get_color(point, input, k, 0);
 	else
 		ft_get_default_color(point);
 	if (k == -1 || (input[k] != ' ' && !last))
