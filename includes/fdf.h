@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 10:07:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 18:03:44 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 18:46:35 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,33 +121,33 @@ void			ft_get_zero_point(t_grid *grid);
 void			ft_iterate_arr(t_grid *grid, void (f)(t_point*));
 
 //projections:
-void			ft_get_draw_pts_isometric(t_grid *grid, t_point *point);
+int				ft_get_draw_pts_isometric(t_grid *grid, t_point *point);
 void			ft_get_zero_isometric(t_grid *grid);
 
-void			ft_get_draw_pts_paralinear(t_grid *grid, t_point *point);
+int				ft_get_draw_pts_paralinear(t_grid *grid, t_point *point);
 void			ft_get_zero_paralinear(t_grid *grid);
 
-void			ft_get_draw_pts_origami(t_grid *grid, t_point *point);
+int				ft_get_draw_pts_origami(t_grid *grid, t_point *point);
 void			ft_get_zero_origami(t_grid *grid);
 
-void			ft_get_draw_pts_flat(t_grid *grid, t_point *point);
+int 			ft_get_draw_pts_flat(t_grid *grid, t_point *point);
 void			ft_get_zero_flat(t_grid *grid);
 
 //events:
 int				ft_deal_key(int key, void *ptrs);
 
-void			ft_move_down(t_ptrs *ptrs);
-void			ft_move_up(t_ptrs *ptrs);
-void			ft_move_left(t_ptrs *ptrs);
-void			ft_move_right(t_ptrs *ptrs);
-void			ft_reverse_arrows(t_ptrs *ptrs);
-void			ft_reset_to_middle(t_ptrs *ptrs);
+int				ft_move_down(t_ptrs *ptrs);
+int				ft_move_up(t_ptrs *ptrs);
+int				ft_move_left(t_ptrs *ptrs);
+int				ft_move_right(t_ptrs *ptrs);
+int				ft_reverse_arrows(t_ptrs *ptrs);
+int				ft_reset_to_middle(t_ptrs *ptrs);
 
-void			ft_close(t_ptrs *ptrs);
-void			ft_zoom_in(t_ptrs *ptrs);
-void			ft_zoom_out(t_ptrs *ptrs);
-void			ft_switch_projection(t_ptrs *ptrs);
-void			ft_switch_color(t_ptrs *ptrs);
+int				ft_close(t_ptrs *ptrs);
+int				ft_zoom_in(t_ptrs *ptrs);
+int				ft_zoom_out(t_ptrs *ptrs);
+int				ft_switch_projection(t_ptrs *ptrs);
+int				ft_switch_color(t_ptrs *ptrs);
 
 int				ft_deal_mouse(int button, int x, int y, void *ptrs);
 
@@ -157,5 +157,7 @@ void			ft_color_theme_1(t_point *next, t_line *l, int max_z, int min_z);
 
 int				ft_get_i(t_point *next, t_line *l);
 int				ft_get_len(t_line *l);
+
+int				ft_fits_img(t_point *start, t_point *end);
 
 #endif

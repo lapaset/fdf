@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:35:50 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 16:34:14 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 18:47:52 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_get_reverse_key(int key)
 	return (key - 1);
 }
 
-void	ft_key_funcs(void (*key_funcs[])(t_ptrs*))
+void	ft_key_funcs(int (*key_funcs[])(t_ptrs*))
 {
 	ft_bzero(key_funcs, sizeof(void*) * 126);
 	key_funcs[53] = &ft_close;
@@ -46,7 +46,7 @@ void	ft_key_funcs(void (*key_funcs[])(t_ptrs*))
 int		ft_deal_key(int key, void *ptrs)
 {
 	t_ptrs	*temp;
-	void	(*key_funcs[127])(t_ptrs*);
+	int		(*key_funcs[127])(t_ptrs*);
 
 	ft_printf("key pressed %d\n", key);
 	if (key > 126)
@@ -56,7 +56,9 @@ int		ft_deal_key(int key, void *ptrs)
 	if (key >= 123 && key <= 126 && temp->grid->reverse_arrows)
 		key = ft_get_reverse_key(key);
 	if (key_funcs[key] != 0)
-		key_funcs[key](ptrs);
-	ft_reset_image(ptrs);
+	{
+		if (key_funcs[key](ptrs))
+			ft_reset_image(ptrs);
+	}
 	return (key);
 }

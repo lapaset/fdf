@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:23:47 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 17:08:51 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/04 19:19:50 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		ft_fits_img(t_point *start, t_point *end)
 {
-	return (start->dx >= 0 || start->dx < IMG_WIDTH ||
-			start->dy >= 0 || start->dy < IMG_HEIGHT ||
-			end->dx >= 0 || end->dx < IMG_WIDTH ||
-			end->dy >= 0 || end->dy < IMG_HEIGHT);
+	return ((start->dx >= 0 && start->dx < IMG_WIDTH) ||
+			(start->dy >= 0 && start->dy < IMG_HEIGHT) ||
+			(end->dx >= 0 && end->dx < IMG_WIDTH) ||
+			(end->dy >= 0 && end->dy < IMG_HEIGHT));
 }
 
 void	ft_make_line(t_point *p1, t_point *p2, t_line *line)
@@ -57,11 +57,11 @@ void	ft_line_to_img(t_point *p1, t_point *p2, t_ptrs *ptrs)
 	while (!done)
 	{
 		done = ft_bresenham(line, &next);
-		//ft_color_theme_1(&next, line, ptrs->grid->max_z, ptrs->grid->min_z);
 		ft_get_dot_color(&next, line, ptrs->grid->colortheme != 0);
 		ft_dot_to_image(&next, ptrs, 0);
 	}
 	free(line);
+
 }
 
 void	ft_grid_to_image(t_grid *grid, t_ptrs *ptrs)
@@ -76,11 +76,11 @@ void	ft_grid_to_image(t_grid *grid, t_ptrs *ptrs)
 		while (j < grid->arr_width)
 		{
 			if (i + 1 < grid->arr_height &&
-			ft_fits_img(&grid->arr[i][j], &grid->arr[i + 1][j]))
-				ft_line_to_img(&grid->arr[i][j], &grid->arr[i + 1][j], ptrs);
+				ft_fits_img(&grid->arr[i][j], &grid->arr[i + 1][j]))
+					ft_line_to_img(&grid->arr[i][j], &grid->arr[i + 1][j], ptrs);
 			if (j + 1 < grid->arr_width &&
-			ft_fits_img(&grid->arr[i][j], &grid->arr[i][j + 1]))
-				ft_line_to_img(&grid->arr[i][j], &grid->arr[i][j + 1], ptrs);
+				ft_fits_img(&grid->arr[i][j], &grid->arr[i][j + 1]))
+					ft_line_to_img(&grid->arr[i][j], &grid->arr[i][j + 1], ptrs);
 			j++;
 		}
 		i++;
