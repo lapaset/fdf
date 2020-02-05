@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 10:07:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 19:48:33 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:45:44 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define DEFAULT_BLUE 255
 # define DEFAULT_PROJECTION 3
 # define THEMES 4
+# define TEXT_COLOR 0xE9E9E9
+# define WARNING_COLOR 0xFFFFFF
 
 typedef struct	s_point
 {
@@ -49,19 +51,18 @@ typedef struct	s_point
 typedef struct	s_grid
 {
 	t_point		**arr;
+	t_point		*center;
 	int			arr_width;
 	int			arr_height;
+	int			x0;
+	int			y0;
 	int			multiply;
 	int			multiply_z;
 	int			max_z;
 	int			min_z;
 	int			projection;
-	int			x0;
-	int			y0;
-	int			reverse_arrows;
-	int			center_moved;
 	int			colortheme;
-	t_point		*center;
+	int			reverse_arrows;
 }				t_grid;
 
 typedef struct	s_ptrs
@@ -122,16 +123,16 @@ void			ft_get_zero_point(t_grid *grid);
 void			ft_iterate_arr(t_grid *grid, void (f)(t_point*));
 
 //projections:
-int				ft_get_draw_pts_isometric(t_grid *grid, t_point *point);
+void			ft_get_draw_pts_isometric(t_grid *grid, t_point *point);
 void			ft_get_zero_isometric(t_grid *grid);
 
-int				ft_get_draw_pts_paralinear(t_grid *grid, t_point *point);
+void			ft_get_draw_pts_paralinear(t_grid *grid, t_point *point);
 void			ft_get_zero_paralinear(t_grid *grid);
 
-int				ft_get_draw_pts_origami(t_grid *grid, t_point *point);
+void			ft_get_draw_pts_origami(t_grid *grid, t_point *point);
 void			ft_get_zero_origami(t_grid *grid);
 
-int 			ft_get_draw_pts_flat(t_grid *grid, t_point *point);
+void			ft_get_draw_pts_flat(t_grid *grid, t_point *point);
 void			ft_get_zero_flat(t_grid *grid);
 
 //events:
@@ -151,10 +152,10 @@ int				ft_switch_projection(t_ptrs *ptrs);
 int				ft_switch_color(t_ptrs *ptrs);
 
 int				ft_deal_mouse(int button, int x, int y, void *ptrs);
+void			ft_draw_warning_box(t_ptrs *ptrs);
 
 //color business:
 void			ft_get_theme_colors(t_grid *grid, t_point *point);
-void			ft_color_theme_1(t_point *next, t_line *l, int max_z, int min_z);
 
 int				ft_get_i(t_point *next, t_line *l);
 int				ft_get_len(t_line *l);

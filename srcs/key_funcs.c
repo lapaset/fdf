@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 12:36:39 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 19:40:19 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:41:50 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,13 @@ int		ft_reverse_arrows(t_ptrs *ptrs)
 	return (0);
 }
 
-int		ft_close(t_ptrs *ptrs)
-{
-	mlx_destroy_image(ptrs->mlx_ptr, ptrs->img_ptr);
-	mlx_destroy_window(ptrs->mlx_ptr, ptrs->win_ptr);
-	exit(1);
-}
-
 int		ft_zoom_in(t_ptrs *ptrs)
 {
 	if (ptrs->grid->multiply > 400)
 	{
-		mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, WIN_WIDTH / 2 - 60, WIN_HEIGHT - 50, 0x9A2D4C, "MAXIMUM ZOOM");
+		ft_draw_warning_box(ptrs);
+		mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, WIN_WIDTH / 2 - 60,
+			WIN_HEIGHT - 50, WARNING_COLOR, "MAXIMUM ZOOM");
 		return (0);
 	}
 	ptrs->grid->multiply = ft_next_fibonacci(ptrs->grid->multiply);
@@ -43,7 +38,9 @@ int		ft_zoom_out(t_ptrs *ptrs)
 {
 	if (ptrs->grid->multiply < 2)
 	{
-		mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, WIN_WIDTH / 2 - 60, WIN_HEIGHT - 50, 0x9A2D4C, "MAXIMUM ZOOM");
+		ft_draw_warning_box(ptrs);
+		mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, WIN_WIDTH / 2 - 60,
+			WIN_HEIGHT - 50, WARNING_COLOR, "MAXIMUM ZOOM");
 		return (0);
 	}
 	ptrs->grid->multiply = ft_prev_fibonacci(ptrs->grid->multiply);

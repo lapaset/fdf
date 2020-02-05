@@ -6,11 +6,18 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:35:50 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 18:47:52 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:41:56 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int		ft_close(t_ptrs *ptrs)
+{
+	mlx_destroy_image(ptrs->mlx_ptr, ptrs->img_ptr);
+	mlx_destroy_window(ptrs->mlx_ptr, ptrs->win_ptr);
+	exit(1);
+}
 
 void	ft_reset_image(t_ptrs *ptrs)
 {
