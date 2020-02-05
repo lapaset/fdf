@@ -6,33 +6,33 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 12:35:50 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/05 11:41:56 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 14:10:21 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_close(t_ptrs *ptrs)
+static int	ft_close(t_ptrs *ptrs)
 {
 	mlx_destroy_image(ptrs->mlx_ptr, ptrs->img_ptr);
 	mlx_destroy_window(ptrs->mlx_ptr, ptrs->win_ptr);
 	exit(1);
 }
 
-void	ft_reset_image(t_ptrs *ptrs)
+static void	ft_reset_image(t_ptrs *ptrs)
 {
 	mlx_destroy_image(ptrs->mlx_ptr, ptrs->img_ptr);
 	ft_draw_image(ptrs);
 }
 
-int		ft_get_reverse_key(int key)
+static int	ft_get_reverse_key(int key)
 {
 	if (key == 123 || key == 125)
 		return (key + 1);
 	return (key - 1);
 }
 
-void	ft_key_funcs(int (*key_funcs[])(t_ptrs*))
+static void	ft_key_funcs(int (*key_funcs[])(t_ptrs*))
 {
 	ft_bzero(key_funcs, sizeof(void*) * 126);
 	key_funcs[53] = &ft_close;
@@ -50,12 +50,11 @@ void	ft_key_funcs(int (*key_funcs[])(t_ptrs*))
 	key_funcs[8] = &ft_switch_color;
 }
 
-int		ft_deal_key(int key, void *ptrs)
+int			ft_deal_key(int key, void *ptrs)
 {
 	t_ptrs	*temp;
 	int		(*key_funcs[127])(t_ptrs*);
 
-	ft_printf("key pressed %d\n", key);
 	if (key > 126)
 		return (0);
 	temp = (t_ptrs*)ptrs;

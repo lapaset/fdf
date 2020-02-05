@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 12:36:39 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/05 11:41:50 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 14:24:09 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ int		ft_zoom_in(t_ptrs *ptrs)
 {
 	if (ptrs->grid->multiply > 400)
 	{
-		ft_draw_warning_box(ptrs);
-		mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, WIN_WIDTH / 2 - 60,
-			WIN_HEIGHT - 50, WARNING_COLOR, "MAXIMUM ZOOM");
+		ft_draw_warning(ptrs, "ZOOM MAX");
 		return (0);
 	}
 	ptrs->grid->multiply = ft_next_fibonacci(ptrs->grid->multiply);
@@ -38,9 +36,7 @@ int		ft_zoom_out(t_ptrs *ptrs)
 {
 	if (ptrs->grid->multiply < 2)
 	{
-		ft_draw_warning_box(ptrs);
-		mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, WIN_WIDTH / 2 - 60,
-			WIN_HEIGHT - 50, WARNING_COLOR, "MAXIMUM ZOOM");
+		ft_draw_warning(ptrs, "ZOOM MIN");
 		return (0);
 	}
 	ptrs->grid->multiply = ft_prev_fibonacci(ptrs->grid->multiply);

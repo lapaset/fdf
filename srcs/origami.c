@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 12:44:07 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/05 10:58:19 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:58:23 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 void	ft_get_zero_origami(t_grid *grid)
 {
 	grid->x0 = grid->center->dx - (grid->multiply *
-				(grid->arr_width + grid->arr_height - 2)) / 2 +
-				grid->multiply * (grid->arr_height - 1);
+				(grid->width + grid->height - 2)) / 2 +
+				grid->multiply * (grid->height - 1);
 	grid->y0 = grid->center->dy - (grid->multiply *
-				(grid->arr_width + grid->arr_height - 2)) / 4;
-	
+				(grid->width + grid->height - 2)) / 4;
 }
 
 void	ft_get_draw_pts_origami(t_grid *grid, t_point *point)

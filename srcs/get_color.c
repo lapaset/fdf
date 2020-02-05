@@ -6,18 +6,11 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 16:02:15 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 16:50:09 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 14:07:00 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void		ft_get_default_color(t_point *point)
-{
-	point->b = DEFAULT_BLUE;
-	point->g = DEFAULT_GREEN;
-	point->r = DEFAULT_RED;
-}
 
 static int	ft_get_rgb(char *input, int len, int minlen)
 {
@@ -29,6 +22,13 @@ static int	ft_get_rgb(char *input, int len, int minlen)
 	res = ft_hexa_to_int(input[len - minlen + 1]);
 	temp = ft_hexa_to_int(input[len - minlen]);
 	return (res + temp * 16);
+}
+
+void		ft_get_default_color(t_point *point)
+{
+	point->b = DEFAULT_BLUE;
+	point->g = DEFAULT_GREEN;
+	point->r = DEFAULT_RED;
 }
 
 int			ft_get_color(t_point *point, char *input, int k, int theme)

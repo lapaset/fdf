@@ -6,7 +6,7 @@
 #    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/16 16:29:38 by llahti            #+#    #+#              #
-#    Updated: 2020/02/04 15:08:23 by llahti           ###   ########.fr        #
+#    Updated: 2020/02/05 17:32:11 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,24 +37,30 @@ PRINTF = $(patsubst %, ft_printf/%, $(_PRINTF))
 _OBJS = $(LIBFT) $(GNL) $(PRINTF)
 OBJS = $(patsubst %, $(ODIR)/%, $(_OBJS))
 
-$(ODIR)/%.o: $(SDIR)/%.c
-	@gcc -Wall -Wextra -Werror -c -o $@ $<
-
 all: $(NAME)
 
+$(ODIR)/%.o: $(SDIR)/%.c
+	@[ -d $(ODIR) ] || mkdir -p $(ODIR)
+	@[ -d $(ODIR)/libft ] || mkdir -p $(ODIR)/libft
+	@[ -d $(ODIR)/gnl ] || mkdir -p $(ODIR)/gnl
+	@[ -d $(ODIR)/ft_printf ] || mkdir -p $(ODIR)/ft_printf
+	@gcc -Wall -Wextra -Werror -c -o $@ $<
+
 $(NAME): $(OBJS)
-	@echo "\033[1;32mObject files created\033[0m"
-	@ar rc $(NAME) $^
+	@echo "\033[1;32mLibrary objects created\033[0m"
+	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 	@echo "\033[1;32mLibrary created\033[0m"
 
 clean:
 	@rm -f $(OBJS)
-	@echo "\033[1;32mObjects cleaned\033[0m"
+	@echo "\033[1;32mLibrary objects removed\033[0m"
 
-fclean: clean
+libclean:
 	@rm -f $(NAME)
-	@echo "\033[1;32mLibrary cleaned\033[0m"
+	@echo "\033[1;32mLibrary removed\033[0m"
+
+fclean: clean libclean
 
 re: fclean all
 

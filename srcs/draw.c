@@ -6,13 +6,13 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:16:00 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/05 11:03:56 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 14:31:42 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_get_draw_points(t_grid *grid)
+static void	ft_get_draw_points(t_grid *grid)
 {
 	void	(*projections[4])(t_grid*, t_point *point);
 	int		i;
@@ -23,10 +23,10 @@ void	ft_get_draw_points(t_grid *grid)
 	projections[2] = &ft_get_draw_pts_origami;
 	projections[3] = &ft_get_draw_pts_flat;
 	i = 0;
-	while (i < grid->arr_height)
+	while (i < grid->height)
 	{
 		j = 0;
-		while (j < grid->arr_width)
+		while (j < grid->width)
 		{
 			projections[grid->projection](grid, &grid->arr[i][j]);
 			if (grid->colortheme != 0)
@@ -37,7 +37,7 @@ void	ft_get_draw_points(t_grid *grid)
 	}
 }
 
-void	ft_get_zero_point(t_grid *grid)
+void		ft_get_zero_point(t_grid *grid)
 {
 	void	(*zeropoints[4])(t_grid*);
 
@@ -48,7 +48,27 @@ void	ft_get_zero_point(t_grid *grid)
 	zeropoints[grid->projection](grid);
 }
 
-int		ft_draw_image(t_ptrs *ptrs)
+static void	ft_draw_instructions(t_ptrs *ptrs)
+{
+	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 50, TEXT_COLOR,
+		"MOVE:    < > ^ v");
+	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 70, TEXT_COLOR,
+		"REVERSE: r");
+	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 90, TEXT_COLOR,
+		"RESET:   m");
+	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 110, TEXT_COLOR,
+		"ZOOM:    + -");
+	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 130, TEXT_COLOR,
+		"HEIGHT:  scroll");
+	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 150, TEXT_COLOR,
+		"PROJECTION: p");
+	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 170, TEXT_COLOR,
+		"COLOR:   c");
+	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 190, TEXT_COLOR,
+		"CLOSE:   esc");
+}
+
+int			ft_draw_image(t_ptrs *ptrs)
 {
 	ft_get_zero_point(ptrs->grid);
 	ft_get_draw_points(ptrs->grid);
@@ -58,27 +78,7 @@ int		ft_draw_image(t_ptrs *ptrs)
 	return (1);
 }
 
-void	ft_draw_instructions(t_ptrs *ptrs)
-{
-	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 40, 50, TEXT_COLOR,
-		"MOVE:    < > ^ v");
-	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 40, 70, TEXT_COLOR,
-		"REVERSE: r");
-	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 40, 90, TEXT_COLOR,
-		"RESET:   m");
-	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 40, 110, TEXT_COLOR,
-		"ZOOM:    + -");
-	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 40, 130, TEXT_COLOR,
-		"HEIGHT:  scroll");
-	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 40, 150, TEXT_COLOR,
-		"PROJECTION: p");
-	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 40, 170, TEXT_COLOR,
-		"COLOR:   c");
-	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 40, 190, TEXT_COLOR,
-		"CLOSE:   esc");
-}
-
-int		ft_draw(t_grid *grid)
+int			ft_draw(t_grid *grid)
 {
 	t_ptrs	*ptrs;
 

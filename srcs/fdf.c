@@ -6,13 +6,13 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 14:03:50 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/31 14:14:10 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 14:06:04 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_read(char ***input, char **argv)
+static int	ft_read(char ***input, char **argv)
 {
 	int		fd;
 	int		height;
@@ -26,7 +26,7 @@ int		ft_read(char ***input, char **argv)
 	return (height);
 }
 
-int		main(int arg, char **argv)
+int			main(int arg, char **argv)
 {
 	t_grid	*grid;
 	char	**input;
@@ -34,7 +34,7 @@ int		main(int arg, char **argv)
 
 	if (arg != 2)
 		return (ft_usage());
-	if (!(input = (char**)malloc(sizeof(char*) * MAX_SIZE)))
+	if (!(input = (char**)malloc(sizeof(char*) * MAX_HEIGHT)))
 		ft_error("Malloc error at main", 1);
 	if ((height = ft_read(&input, argv)) == -1)
 		ft_error("Error at read", 1);

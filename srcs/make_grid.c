@@ -6,13 +6,13 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 13:45:45 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/05 11:10:38 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 14:13:34 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_count_arr_width(char *line)
+static int	ft_count_arr_width(char *line)
 {
 	int		width;
 
@@ -35,18 +35,18 @@ int		ft_count_arr_width(char *line)
 	return (width);
 }
 
-void	ft_get_projection_and_zoom(t_grid *grid)
+static void	ft_get_projection_and_zoom(t_grid *grid)
 {
 	grid->projection = DEFAULT_PROJECTION;
-	grid->multiply = 1 + IMG_WIDTH / (grid->arr_width + grid->arr_height);
+	grid->multiply = 1 + IMG_WIDTH / (grid->width + grid->height);
 }
 
-void	ft_make_grid(t_grid **grid, char **lines, int height)
+void		ft_make_grid(t_grid **grid, char **lines, int height)
 {
 	if (!(*grid = (t_grid*)malloc(sizeof(t_grid))))
 		ft_error("Malloc error at ft_make_grid", 1);
-	(*grid)->arr_width = ft_count_arr_width(lines[0]);
-	(*grid)->arr_height = height;
+	(*grid)->width = ft_count_arr_width(lines[0]);
+	(*grid)->height = height;
 	(*grid)->reverse_arrows = 0;
 	(*grid)->colortheme = 0;
 	(*grid)->multiply_z = 1;

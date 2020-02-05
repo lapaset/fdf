@@ -6,13 +6,13 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:23:47 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 19:19:50 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 14:16:10 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_fits_img(t_point *start, t_point *end)
+static int	ft_fits_img(t_point *start, t_point *end)
 {
 	return ((start->dx >= 0 && start->dx < IMG_WIDTH) ||
 			(start->dy >= 0 && start->dy < IMG_HEIGHT) ||
@@ -20,7 +20,7 @@ int		ft_fits_img(t_point *start, t_point *end)
 			(end->dy >= 0 && end->dy < IMG_HEIGHT));
 }
 
-void	ft_make_line(t_point *p1, t_point *p2, t_line *line)
+static void	ft_make_line(t_point *p1, t_point *p2, t_line *line)
 {
 	if ((p1->dx >= p2->dx && p1->dy > p2->dy) ||
 		(p1->dx < p2->dx && p1->dy > p2->dy))
@@ -39,7 +39,7 @@ void	ft_make_line(t_point *p1, t_point *p2, t_line *line)
 	line->y1 = line->end->dy;
 }
 
-void	ft_line_to_img(t_point *p1, t_point *p2, t_ptrs *ptrs)
+static void	ft_line_to_img(t_point *p1, t_point *p2, t_ptrs *ptrs)
 {
 	t_point	next;
 	t_line	*line;
@@ -61,33 +61,32 @@ void	ft_line_to_img(t_point *p1, t_point *p2, t_ptrs *ptrs)
 		ft_dot_to_image(&next, ptrs, 0);
 	}
 	free(line);
-
 }
 
-void	ft_grid_to_image(t_grid *grid, t_ptrs *ptrs)
+static void	ft_grid_to_image(t_grid *grid, t_ptrs *ptrs)
 {
 	int		i;
 	int		j;
 
 	i = 0;
-	while (i < grid->arr_height)
+	while (i < grid->height)
 	{
 		j = 0;
-		while (j < grid->arr_width)
+		while (j < grid->width)
 		{
-			if (i + 1 < grid->arr_height &&
-				ft_fits_img(&grid->arr[i][j], &grid->arr[i + 1][j]))
-					ft_line_to_img(&grid->arr[i][j], &grid->arr[i + 1][j], ptrs);
-			if (j + 1 < grid->arr_width &&
-				ft_fits_img(&grid->arr[i][j], &grid->arr[i][j + 1]))
-					ft_line_to_img(&grid->arr[i][j], &grid->arr[i][j + 1], ptrs);
+			if (i + 1 < grid->height &&
+			ft_fits_img(&grid->arr[i][j], &grid->arr[i + 1][j]))
+				ft_line_to_img(&grid->arr[i][j], &grid->arr[i + 1][j], ptrs);
+			if (j + 1 < grid->width &&
+			ft_fits_img(&grid->arr[i][j], &grid->arr[i][j + 1]))
+				ft_line_to_img(&grid->arr[i][j], &grid->arr[i][j + 1], ptrs);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	ft_make_image(t_ptrs *ptrs, t_grid *grid)
+void		ft_make_image(t_ptrs *ptrs, t_grid *grid)
 {
 	int		bpp;
 	int		size_line;

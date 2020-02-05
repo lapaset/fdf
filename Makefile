@@ -6,34 +6,43 @@
 #    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/15 15:53:15 by llahti            #+#    #+#              #
-#    Updated: 2020/02/04 18:02:10 by llahti           ###   ########.fr        #
+#    Updated: 2020/02/05 16:32:44 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
-SRCS = fdf.c make_array.c math_funcs.c key_events.c key_funcs.c key_funcs_move.c \
-	mouse_events.c utilities.c iso.c make_grid.c make_image.c get_color.c \
-	bresenham.c origami.c flat.c paralinear.c dot_to_image.c draw.c colorthemes.c
-SRCSDIR = $(patsubst %, srcs/%, $(SRCS))
-OBJS = $(patsubst %.c, %.o, $(SRCS))
-INCS = includes/
+ODIR = objs
+SDIR = srcs
+INC = includes/
 LIB = libft/libft.a
+_OBJS = fdf.o make_array.o math_funcs.o key_events.o key_funcs.o\
+	key_funcs_move.o mouse_events.o utilities.o iso.o make_grid.o\
+	make_image.o get_color.o bresenham.o origami.o flat.o paralinear.o\
+	dot_to_image.o draw.o colorthemes.o themes.o
+OBJS = $(patsubst %, $(ODIR)/%, $(_OBJS))
 
 all: $(NAME)
 
-$(NAME):
-	make -C libft/
-	gcc -c -Wall -Wextra -Werror -I $(INCS) $(SRCSDIR)
-	cc -o $(NAME) $(OBJS) $(LIB) -I /usr/local/include -I /usr/local/lib/ -lmlx\
-	 -framework OpenGL -framework AppKit
+$(ODIR)/%.o: $(SDIR)/%.c
+	@[ -d $(ODIR) ] || mkdir $(ODIR)
+	@gcc -Wall -Wextra -Werror -c -I $(INC) -o $@ $<
+
+$(NAME): $(OBJS)
+	@make -C libft/
+	@cc -o $(NAME) $(OBJS) $(LIB) -I /usr/local/include\
+		-I /usr/local/lib/ -lmlx\
+		-framework OpenGL -framework AppKit
+	@echo "\033[1;32mFdF created\033[0m"
 
 clean:
-	rm -Rf $(OBJS)
-	make -C libft/ clean
+	@rm -Rf $(OBJS)
+	@make -C libft/ clean
+	@echo "\033[1;32mFdF objects removed\033[0m"
 
 fclean: clean
-	rm -Rf $(NAME)
-	make -C libft/ fclean
+	@rm -Rf $(NAME)
+	@make -C libft/ libclean
+	@echo "\033[1;32mFdF removed\033[0m"
 
 re: fclean all
 
