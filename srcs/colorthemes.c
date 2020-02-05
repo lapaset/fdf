@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colorthemes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:32:30 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 20:00:20 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 09:12:52 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,15 @@ char	*theme_4[6] = {"5", ",0xFFB345", ",0xFF705E", ",0xFF406F",
 
 char	**themes[THEMES] = {theme_1, theme_2, theme_3, theme_4};
 //todo tomorrow:
-//	-refactor
-//	-make different color models
+//	-should the themes be put in fuctions or files so they would
+//		not be global variables?
+//	-add string instructions
+//	-go through all the files to see that they pass the norm
+//	-rm all the ft_printf stuff
+//	-check the leaks
+//
+//	Leave for the future:
+//	-make all the drawing functions work from middle out
 //	-try filling?
 //	-consider the rotating stuff
 

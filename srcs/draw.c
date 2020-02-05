@@ -3,43 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:16:00 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/04 18:32:53 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/05 09:11:35 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-//make this more efficient by counting only the points that fit the img or have
-//adjacent point that fits the img starting from the middle
-//-->center point could be an excisting point after all
-
-/*void	ft_get_draw_points(t_grid *grid)
-{
-	void	(*projections[4])(t_grid*, t_point *point);
-	int		i;
-	int		j;
-
-	projections[0] = &ft_get_draw_pts_paralinear;
-	projections[1] = &ft_get_draw_pts_isometric;
-	projections[2] = &ft_get_draw_pts_origami;
-	projections[3] = &ft_get_draw_pts_flat;
-	i = 0;
-	while (i < grid->arr_height)
-	{
-		j = 0;
-		while (j < grid->arr_width)
-		{
-			projections[grid->projection](grid, &grid->arr[i][j]);
-			if (grid->colortheme != 0)
-				ft_get_theme_colors(grid, &grid->arr[i][j]);
-			j++;
-		}
-		i++;
-	}
-}*/
 
 void	ft_get_draw_points(t_grid *grid)
 {
@@ -101,7 +72,7 @@ int		ft_draw(t_grid *grid)
 		return (ft_error("Malloc error at ft_draw", 1));
 	ptrs->mlx_ptr = mlx_init();
 	ptrs->win_ptr = mlx_new_window(ptrs->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
-					"le window");
+					"FdF");
 	ptrs->grid = grid;
 	ft_draw_image(ptrs);
 	mlx_key_hook(ptrs->win_ptr, ft_deal_key, (void*)ptrs);
