@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 10:07:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/05 14:30:48 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/06 09:26:45 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include "../libft/srcs/libft/libft.h"
 # include "mlx.h"
 # define MAX_HEIGHT 1000
-# define WIN_WIDTH 2000
-# define WIN_HEIGHT 1000
-# define IMG_WIDTH 1600
-# define IMG_HEIGHT 1000
+# define WIN_WIDTH 1400
+# define WIN_HEIGHT 800
+# define IMG_WIDTH 1000
+# define IMG_HEIGHT 800
 # define DEFAULT_RED 255
 # define DEFAULT_GREEN 255
 # define DEFAULT_BLUE 255

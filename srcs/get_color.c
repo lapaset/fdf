@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 16:02:15 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/05 14:07:00 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/12 10:35:04 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			ft_get_color(t_point *point, char *input, int k, int theme)
 
 	if (!(ft_strnequ(&input[k], ",0x", 3) ||
 			ft_strnequ(&input[k], ",0X", 3)))
-		ft_error(input, 1);
+		ft_error("Error at ft_get_color, no color after comma", 1);
 	k += 3;
 	colorlen = ft_hexa_len(&input[k]);
 	if (theme)

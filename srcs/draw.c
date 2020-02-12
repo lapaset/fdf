@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:16:00 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/05 14:31:42 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/12 09:37:08 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ void		ft_get_zero_point(t_grid *grid)
 static void	ft_draw_instructions(t_ptrs *ptrs)
 {
 	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 50, TEXT_COLOR,
-		"MOVE:    < > ^ v");
+		"MOVE:     < > ^ v");
 	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 70, TEXT_COLOR,
-		"REVERSE: r");
+		"REV DIR:  r");
 	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 90, TEXT_COLOR,
-		"RESET:   m");
+		"CENTER:   m");
 	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 110, TEXT_COLOR,
-		"ZOOM:    + -");
+		"ZOOM:     + -");
 	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 130, TEXT_COLOR,
-		"HEIGHT:  scroll");
+		"ALTITUDE: scroll");
 	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 150, TEXT_COLOR,
 		"PROJECTION: p");
 	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 170, TEXT_COLOR,
-		"COLOR:   c");
+		"COLOR:    c");
 	mlx_string_put(ptrs->mlx_ptr, ptrs->win_ptr, 30, 190, TEXT_COLOR,
-		"CLOSE:   esc");
+		"CLOSE:    esc");
 }
 
 int			ft_draw_image(t_ptrs *ptrs)
